@@ -82,6 +82,7 @@ BOARD_KERNEL_CMDLINE += \
     nosoftlockup \
     printk.devkmsg=on \
     firmware_class.path=/vendor/firmware_mnt/image \
+    log_buf_len=1M \
     qcom_geni_serial.con_enabled=0 \
     sysctl.kernel.firmware_config.force_sysfs_fallback=1
 
