@@ -238,6 +238,7 @@ PRODUCT_PACKAGES += \
     WifiResMumba \
     FrameworksResMumba \
     LineageDialerOverlayMumba \
+    DeviceAsWebcamResTarget \
     LineageSystemUIMumba \
     LineageSdkMumba \
     LineageSettingsProviderMumba \
