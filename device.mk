@@ -272,9 +272,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/idc/double-tap.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/double-tap.idc \
     $(LOCAL_PATH)/configs/keylayout/double-tap.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/double-tap.kl
 
-# Kernel
-PRODUCT_ENABLE_UFFD_GC := true
-
 # Moto hardware
 PRODUCT_PACKAGES += \
     MotoActions \
@@ -309,9 +306,6 @@ PRODUCT_SOONG_NAMESPACES += \
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.keystore.app_attest_key.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.keystore.app_attest_key.xml
-
-# Kernel
-PRODUCT_ENABLE_UFFD_GC := true
 
 # Media
 PRODUCT_COPY_FILES += \
