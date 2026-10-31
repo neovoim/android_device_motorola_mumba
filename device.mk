@@ -159,8 +159,14 @@ SYSTEMUI_OPTIMIZE_JAVA := true
 PRODUCT_PACKAGES += \
     fastbootd
 
+# Motorola face framework compatibility
+PRODUCT_PACKAGES += \
+    moto-face-framework \
+    moto-face-framework.xml
+
 # Fingerprint
 PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.biometrics.face.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.biometrics.face.xml \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
 
 PRODUCT_PACKAGES += \
