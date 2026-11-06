@@ -25,7 +25,11 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+on early-init
+    write /proc/sys/kernel/firmware_config/force_sysfs_fallback 1
+
 on init
+    exec u:r:recovery:s0 -- /system/bin/modprobe -a -d /lib/modules qti_battery_charger adsp_loader_dlkm qti_glink_charger
     write /sys/class/backlight/panel0-backlight/brightness 200
     setprop sys.usb.configfs 1
 
@@ -40,11 +44,13 @@ on fs
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
 
     # Load ADSP firmware for PMIC
-    mkdir /firmware
-    mount vfat /dev/block/bootdevice/by-name/modem${ro.boot.slot_suffix} /firmware ro context=u:object_r:firmware_file:s0
+    mkdir /vendor/firmware_mnt 0755 root root
+    wait /dev/block/bootdevice/by-name/modem${ro.boot.slot_suffix}
+    mount ext4 /dev/block/bootdevice/by-name/modem${ro.boot.slot_suffix} /vendor/firmware_mnt ro context=u:object_r:firmware_file:s0
 
-on property:dev.mnt.blk.firmware=*
+on property:dev.mnt.blk.vendor.firmware_mnt=*
+    wait /sys/kernel/boot_adsp/boot 10
     write /sys/kernel/boot_adsp/boot 1
 
 on property:init.svc.fastbootd=running
-    umount /firmware
+    umount /vendor/firmware_mnt
