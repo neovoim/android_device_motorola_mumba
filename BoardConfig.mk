@@ -126,12 +126,28 @@ BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(DLKM_MODULES_PATH)/modules.block
 
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES := $(wildcard $(RAMDISK_MODULES_PATH)/*.ko)
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(patsubst %,$(RAMDISK_MODULES_PATH)/%,$(shell cat $(RAMDISK_MODULES_PATH)/modules.load))
-BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD  := $(patsubst %,$(DEVICE_PATH)/touch/%,$(shell cat $(DEVICE_PATH)/touch/modules.load.recovery))
+RECOVERY_KERNEL_MODULES := $(strip $(shell cat $(DEVICE_PATH)/touch/modules.load.recovery))
+BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(foreach module,$(RECOVERY_KERNEL_MODULES),$(filter %/$(module),$(BOARD_VENDOR_RAMDISK_KERNEL_MODULES)))
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES_BLOCKLIST_FILE := $(RAMDISK_MODULES_PATH)/modules.blocklist
 
-# Kernel Modules - Recovery
-BOARD_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/touch/modules.load.recovery))
-RECOVERY_KERNEL_MODULES := $(BOARD_RECOVERY_KERNEL_MODULES_LOAD)
+RECOVERY_EXTRA_KERNEL_MODULES := $(addprefix $(DLKM_MODULES_PATH)/, \
+    adsp_loader_dlkm.ko \
+    bm_adsp_ulog.ko \
+    chipone_tddi_v3_mmi.ko \
+    gpr_dlkm.ko \
+    ilitek_v4_mmi.ko \
+    mmi_annotate.ko \
+    mmi_charger.ko \
+    mmi_info.ko \
+    q6_notifier_dlkm.ko \
+    q6_pdr_dlkm.ko \
+    qti_glink_charger.ko \
+    sensors_class.ko \
+    snd_event_dlkm.ko \
+    spf_core_dlkm.ko)
+
+BOARD_RECOVERY_KERNEL_MODULES := $(BOARD_VENDOR_RAMDISK_KERNEL_MODULES) $(RECOVERY_EXTRA_KERNEL_MODULES)
+BOARD_RECOVERY_KERNEL_MODULES_LOAD := $(BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD)
 
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
