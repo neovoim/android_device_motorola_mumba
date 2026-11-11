@@ -139,7 +139,36 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('libaudio_aidl_conversion_common_ndk.so', 'libaudio_aidl_conversion_common_ndk_prebuilt.so'),
     'product/priv-app/MotCamera5/MotCamera5.apk': blob_fixup()
         .apktool_patch('blob-patches/0001-MotCamera5-Remove-MotoPerf.patch'),
+    (
+        'vendor/lib64/soundfx/liblvacfsprocessingaidl.so',
+        'vendor/lib64/soundfx/libdlbvolaidl.so',
+    ): blob_fixup()
+        .replace_needed(
+            'android.media.audio.common.types-V4-ndk.so',
+            'android.media.audio.common.types-V3-ndk.so'
+    ),
+    (
+        'vendor/lib64/soundfx/libswdapaidl.so',
+        'vendor/lib64/soundfx/libswgamedapaidl.so',
+    ): blob_fixup()
+        .replace_needed('libaudio_aidl_conversion_common_ndk.so', 'libaudio_aidl_conversion_common_ndk_prebuilt.so'),
+    (
+        'vendor/lib64/libcodec2_soft_ac4dec.so',
+        'vendor/lib64/libcodec2_soft_ddpdec.so',
+        'vendor/lib64/libdlbdsservice.so',
+        'vendor/lib64/libdlbpreg.so',
+        'vendor/lib64/soundfx/libdlbvolaidl.so',
+        'vendor/lib64/soundfx/libswdapaidl.so',
+        'vendor/lib64/soundfx/libswgamedapaidl.so',
+    ): blob_fixup()
+        .replace_needed('libstagefright_foundation.so', 'libstagefright_foundation-v33.so'),
+    (
+      'vendor/lib64/soundfx/libswspatializeraidl.so',
+    ): blob_fixup()
+        .replace_needed('libaudio_aidl_conversion_common_ndk.so', 'libaudio_aidl_conversion_common_ndk_prebuilt.so')
+        .replace_needed('libstagefright_foundation.so', 'libstagefright_foundation-v33.so'),
 }  # fmt: skip
+
 extract_fns: extract_fns_user_type = {
     star_firmware_regex: extract_star_firmware,
 }

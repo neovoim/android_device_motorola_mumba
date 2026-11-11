@@ -6,8 +6,7 @@
 # Add common definitions for Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
 
-# Dolby Atmos
-$(call inherit-product, hardware/dolby/dolby.mk)
+PRODUCT_CHECK_PREBUILT_MAX_PAGE_SIZE := false
 
 # Reduce system server verbosity
 PRODUCT_SYSTEM_SERVER_DEBUG_INFO := false
@@ -34,6 +33,14 @@ PRODUCT_PACKAGES += \
 # AAPT
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+
+# DSP Volume Synchronizer
+PRODUCT_PACKAGES += \
+    DSPVolumeSynchronizer
+
+# LunarisDolby
+PRODUCT_PACKAGES += \
+    LunarisDolby
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -211,6 +218,7 @@ PRODUCT_PACKAGES += \
     init.mmi.overlay.rc \
     init.qcom.rc \
     init.vendor.st21nfc.rc \
+    init.dolby.rc \
     init.mmi.rc \
     init.qcom.recovery.rc \
     init.qcom.factory.rc \
@@ -284,6 +292,7 @@ PRODUCT_PACKAGES += \
     LineageSdkMumba \
     LineageSettingsProviderMumba \
     SettingsResMumba \
+    DolbyFrameworksResMumba \
     TelephonyResMumba \
     ApertureResMumba
 
@@ -368,6 +377,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
         frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_parrot/android.hardware.sensor.accelerometer.xml \
         frameworks/native/data/etc/android.hardware.sensor.barometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_parrot/android.hardware.sensor.barometer.xml \
+        frameworks/native/data/etc/android.hardware.sensor.dynamic.head_tracker.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.dynamic.head_tracker.xml \
         frameworks/native/data/etc/android.hardware.sensor.compass.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_parrot/android.hardware.sensor.compass.xml \
         frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_parrot/android.hardware.sensor.gyroscope.xml \
         frameworks/native/data/etc/android.hardware.sensor.light.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_parrot/android.hardware.sensor.light.xml \
@@ -473,6 +483,7 @@ PRODUCT_COPY_FILES += \
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
     hardware/motorola/vintf/device_framework_matrix.xml \
+    $(DEVICE_PATH)/vintf/dolby_framework_matrix.xml \
     $(DEVICE_PATH)/vintf/compatibility_matrix.device.xml
 DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix_aidl.xml
 DEVICE_MANIFEST_FILE += \
