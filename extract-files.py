@@ -137,13 +137,6 @@ blob_fixups: blob_fixups_user_type = {
     ): blob_fixup()
         .replace_needed('android.media.audio.common.types-V4-ndk.so', 'android.media.audio.common.types-V3-ndk.so')
         .replace_needed('libaudio_aidl_conversion_common_ndk.so', 'libaudio_aidl_conversion_common_ndk_prebuilt.so'),
-    'system/etc/permissions/moto-core_services.xml': blob_fixup()
-        .regex_replace(
-            r'file="/system/framework/moto-core_services\.jar"(?! dependency=)',
-            'file="/system/framework/moto-core_services.jar" dependency="moto-face-framework"',
-        ),
-    'system/framework/moto-core_services.jar': blob_fixup()
-        .apktool_patch('blob-patches/0002-moto-core_services-Use-AOSP-face-enrollment-query.patch'),
     'product/priv-app/MotCamera5/MotCamera5.apk': blob_fixup()
         .apktool_patch('blob-patches/0001-MotCamera5-Remove-MotoPerf.patch'),
 }  # fmt: skip
