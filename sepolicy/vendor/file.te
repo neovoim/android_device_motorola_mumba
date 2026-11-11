@@ -3,3 +3,6 @@ type sysfs_torch, sysfs_type, fs_type;
 
 # Dolby
 type vendor_dolby_file, data_file_type, file_type;
+
+# Power
+type proc_walt, fs_type, proc_type;

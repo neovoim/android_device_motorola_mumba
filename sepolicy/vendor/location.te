@@ -1,0 +1,12 @@
+binder_use(vendor_location)
+binder_call(vendor_location, system_server)
+binder_call(vendor_location, vendor_cnd)
+binder_call(vendor_location, vendor_qms)
+
+allow vendor_location vendor_qms_service:service_manager find;
+allow vendor_location fwk_sensor_hwservice:hwservice_manager find;
+allow vendor_location vendor_hal_gnss_qti:unix_dgram_socket sendto;
+allow vendor_location self:qipcrtr_socket create_socket_perms_no_ioctl;
+allow vendor_location self:netlink_route_socket { create bind read };
+allowxperm vendor_location self:udp_socket ioctl lowi_server_ioctls;
+net_domain(vendor_location)

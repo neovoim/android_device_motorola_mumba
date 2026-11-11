@@ -1,3 +1,9 @@
+persist.vendor.mot_audio.        u:object_r:vendor_mot_audio_prop:s0
+vendor.audio.usb_cctoggle u:object_r:vendor_audio_prop:s0 exact string
+
+# FRC
+vendor.gpp.frc.enable u:object_r:vendor_frc_prop:s0
+
 vendor.hdrchecker.froce.mode          u:object_r:vendor_camera_prop:s0
 
 persist.vendor.audio.dolby.tws_tuning u:object_r:vendor_mot_dolby_prop:s0

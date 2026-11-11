@@ -4,3 +4,8 @@ genfscon sysfs /devices/platform/soc/c42d000.qcom,spmi/spmi-0/0-05/c42d000.qcom,
 genfscon sysfs /devices/platform/soc/c42d000.qcom,spmi/spmi-0/0-05/c42d000.qcom,spmi:qcom,pm6150l@5:qcom,leds@d300/leds/led:torch_1/brightness          u:object_r:sysfs_torch:s0
 genfscon sysfs /devices/platform/soc/c42d000.qcom,spmi/spmi-0/0-05/c42d000.qcom,spmi:qcom,pm6150l@5:qcom,leds@d300/leds/led:torch_1/max_brightness      u:object_r:sysfs_torch:s0
 genfscon sysfs /devices/platform/soc/c42d000.qcom,spmi/spmi-0/0-05/c42d000.qcom,spmi:qcom,pm6150l@5:qcom,leds@d300/leds/led:switch_2/brightness         u:object_r:sysfs_torch:s0
+
+# Power
+genfscon proc /sys/walt u:object_r:proc_walt:s0
+
+genfscon sysfs /devices/platform/soc/ac0000.qcom,qupv3_1_geni_se/a80000.i2c/i2c-0/0-0028/wakeup u:object_r:sysfs_wakeup:s0

@@ -1,1 +1,3 @@
+vendor_internal_prop(vendor_mot_audio_prop)
+system_public_prop(vendor_frc_prop)
 vendor_restricted_prop(vendor_mot_dolby_prop)

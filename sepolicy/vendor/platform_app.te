@@ -1,2 +1,4 @@
+allow platform_app cgroup:dir search;
+dontaudit platform_app vendor_hal_qspmhal_service:service_manager find;
 hal_client_domain(platform_app, hal_aidl_dms)
 get_prop(platform_app, vendor_mot_dolby_prop)

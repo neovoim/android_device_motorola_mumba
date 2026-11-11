@@ -1,3 +1,4 @@
+dontaudit servicemanager hal_graphics_composer_default:binder call;
 allow servicemanager hal_aidl_dms_server:dir search;
 allow servicemanager hal_aidl_dms_server:file { open read };
 allow servicemanager hal_aidl_dms_server:process getattr;
